@@ -13,39 +13,63 @@
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div class="brand">
-        <h1>Atlas Santé des Oliveraies</h1>
-        <p>Diagnostic NDVI quasi temps-réel</p>
+    <div id="ghabaSplash" class="ghaba-splash" aria-label="Ecran de lancement GHABA">
+      <div class="ghaba-splash-bg"></div>
+      <div class="ghaba-splash-card">
+        <div class="ghaba-logo-wrap" aria-hidden="true">
+          <img id="splashLogo" class="ghaba-logo" alt="Logo GHABA" />
+          <svg id="splashFallback" class="ghaba-logo-fallback" viewBox="0 0 64 64" role="img" aria-label="Icone feuille">
+            <defs>
+              <linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#83D39A" />
+                <stop offset="100%" stop-color="#1B4A33" />
+              </linearGradient>
+            </defs>
+            <path d="M52 10C33 10 14 22 14 40c0 9 7 14 15 14 19 0 28-19 23-44z" fill="url(#leafGrad)"></path>
+            <path d="M20 45c10-7 17-15 24-28" fill="none" stroke="#DEEFE1" stroke-width="3" stroke-linecap="round"></path>
+          </svg>
+        </div>
+        <h1>GHABA</h1>
+        <p>Welcome to Ghaba</p>
+        <span class="ghaba-loader" aria-hidden="true"></span>
       </div>
-      <div class="filters">
-        <label for="systemeFilter">Système</label>
-        <select id="systemeFilter">
-          <option value="all">Tous</option>
-          <option value="extensif">Extensif</option>
-          <option value="intensif">Intensif</option>
-          <option value="hyper-intensif">Hyper-intensif</option>
-        </select>
-        <button id="refreshBtn" type="button">Rafraichir</button>
-      </div>
-    </header>
+    </div>
 
-    <main class="layout">
-      <section id="map"></section>
-      <aside class="panel">
-        <h2>Statut global</h2>
-        <div class="legend">
-          <span class="badge vert">Vert</span>
-          <span class="badge orange">Orange</span>
-          <span class="badge rouge">Rouge</span>
+    <div id="appShell" class="app-shell" aria-live="polite">
+      <header class="topbar">
+        <div class="brand">
+          <h1>Atlas Santé des Oliveraies</h1>
+          <p>Diagnostic NDVI quasi temps-réel</p>
         </div>
-        <ul id="statsList"></ul>
-        <div id="details" class="details">
-          <h3>Details parcelle</h3>
-          <p>Clique une parcelle sur la carte pour voir le diagnostic.</p>
+        <div class="filters">
+          <label for="systemeFilter">Système</label>
+          <select id="systemeFilter">
+            <option value="all">Tous</option>
+            <option value="extensif">Extensif</option>
+            <option value="intensif">Intensif</option>
+            <option value="hyper-intensif">Hyper-intensif</option>
+          </select>
+          <button id="refreshBtn" type="button">Rafraichir</button>
         </div>
-      </aside>
-    </main>
+      </header>
+
+      <main class="layout">
+        <section id="map"></section>
+        <aside class="panel">
+          <h2>Statut global</h2>
+          <div class="legend">
+            <span class="badge vert">Vert</span>
+            <span class="badge orange">Orange</span>
+            <span class="badge rouge">Rouge</span>
+          </div>
+          <ul id="statsList"></ul>
+          <div id="details" class="details">
+            <h3>Details parcelle</h3>
+            <p>Clique une parcelle sur la carte pour voir le diagnostic.</p>
+          </div>
+        </aside>
+      </main>
+    </div>
 
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"

@@ -33,8 +33,60 @@ const statsList = document.getElementById("statsList");
 const details = document.getElementById("details");
 const systemeFilter = document.getElementById("systemeFilter");
 const refreshBtn = document.getElementById("refreshBtn");
+const appShell = document.getElementById("appShell");
+const splash = document.getElementById("ghabaSplash");
+const splashLogo = document.getElementById("splashLogo");
+const splashFallback = document.getElementById("splashFallback");
 
 let cachedParcelles = [];
+
+function loadImage(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(url);
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+async function setupSplashLogo() {
+  if (!splashLogo || !splashFallback) return;
+  const candidates = [
+    "/static/logo.svg",
+    "/static/logo.png",
+    "/static/ghaba-logo.svg",
+    "/static/ghaba-logo.png",
+  ];
+
+  for (const candidate of candidates) {
+    try {
+      await loadImage(candidate);
+      splashLogo.src = candidate;
+      splashLogo.style.display = "block";
+      splashFallback.style.display = "none";
+      return;
+    } catch (_error) {
+      // Keep searching for a valid logo file.
+    }
+  }
+
+  splashLogo.style.display = "none";
+  splashFallback.style.display = "block";
+}
+
+function runSplashSequence() {
+  if (!appShell || !splash) {
+    return;
+  }
+
+  setTimeout(() => {
+    splash.classList.add("is-exit");
+    appShell.classList.add("is-ready");
+    setTimeout(() => {
+      splash.remove();
+    }, 450);
+  }, 2500);
+}
 
 function getPolygon(parcelle) {
   return parcelle.polygone || parcelle.coordinates || [];
@@ -238,4 +290,6 @@ async function bootstrap() {
 refreshBtn.addEventListener("click", renderMap);
 systemeFilter.addEventListener("change", renderMap);
 
+setupSplashLogo();
+runSplashSequence();
 bootstrap();
