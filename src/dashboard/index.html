@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Anomalies Oliveraies</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <h1>Atlas Santé des Oliveraies</h1>
+        <p>Diagnostic NDVI quasi temps-réel</p>
+      </div>
+      <div class="filters">
+        <label for="systemeFilter">Système</label>
+        <select id="systemeFilter">
+          <option value="all">Tous</option>
+          <option value="extensif">Extensif</option>
+          <option value="intensif">Intensif</option>
+          <option value="hyper-intensif">Hyper-intensif</option>
+        </select>
+        <button id="refreshBtn" type="button">Rafraichir</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section id="map"></section>
+      <aside class="panel">
+        <h2>Statut global</h2>
+        <div class="legend">
+          <span class="badge vert">Vert</span>
+          <span class="badge orange">Orange</span>
+          <span class="badge rouge">Rouge</span>
+        </div>
+        <ul id="statsList"></ul>
+        <div id="details" class="details">
+          <h3>Details parcelle</h3>
+          <p>Clique une parcelle sur la carte pour voir le diagnostic.</p>
+        </div>
+      </aside>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
